@@ -27,7 +27,7 @@ const Login = () => {
       localStorage.setItem("token", response.data.token);
 
       // Redirect to the home page
-      window.location.href = "/home";
+      window.location.href = "/";
     } catch (err) {
       setError(
         err.response?.data?.message || "Login failed. Please try again.",

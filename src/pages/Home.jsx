@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode"; // Corrected import for jwtDecode
+import { jwtDecode } from "jwt-decode"; 
 import axios from "axios";
 import { BACKEND_URL, BACKEND_PORT } from "../assets";
-import { useNavigate } from "react-router-dom"; // Use navigate for redirection
+import { useNavigate } from "react-router-dom"; 
 import Dashboard from "../components/Dashboard";
 import { Link } from "react-router-dom";
 
@@ -42,7 +42,7 @@ const Home = () => {
         handleLogout(); // Log out user if token is invalid
       }
     } else {
-      navigate("/"); // Redirect to login if no token is found
+      navigate("/login"); // Redirect to login if no token is found
     }
   }, []);
 
@@ -53,7 +53,7 @@ const Home = () => {
     if (userInfo.companyId && token) {
       axios
         .get(
-          `${BACKEND_URL}:${BACKEND_PORT}/api/company/${userInfo.companyId}`,
+          `${BACKEND_URL}:${BACKEND_PORT}/api/companies/${userInfo.companyId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ const Home = () => {
   const handleLogout = () => {
     // Clear local storage and redirect to login
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/login");
   };
 
   return (

@@ -22,7 +22,7 @@ const UserManagement = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/");
+      navigate("/login");
       return;
     }
 
@@ -37,7 +37,7 @@ const UserManagement = () => {
       }
     } catch (err) {
       console.error("Invalid token:", err);
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 
@@ -111,7 +111,7 @@ const UserManagement = () => {
       if (decodedToken.userId === userId) {
         localStorage.removeItem("token");
         alert("Your profile has been updated. Please log in again.");
-        window.location.href = "/";
+        window.location.href = "/login";
         return;
       }
 

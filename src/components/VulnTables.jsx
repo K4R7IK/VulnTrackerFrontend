@@ -44,16 +44,17 @@ const VulnTables = () => {
   const fetchQuarters = async (companyId) => {
     try {
       const response = await axios.get(
-        `${BACKEND_URL}:${BACKEND_PORT}/api/quarters`,
+        `${BACKEND_URL}:${BACKEND_PORT}/api/quarters/${companyId}`,
         {
-          params: { companyId },
           headers: { Authorization: `Bearer ${token}` },
         },
       );
       setQuarters(response.data); // Set quarters from the response
+      console.log(quarters);
     } catch (error) {
       console.error("Error fetching quarters:", error);
       setError("Failed to load quarters.");
+      console.log(quarters);
     }
   };
 
@@ -164,6 +165,7 @@ const VulnTables = () => {
                 <th>Is Resolved</th>
                 <th>Age</th>
                 <th>Quarters</th>
+                <th>Plugin Output</th>
               </tr>
             </thead>
             <tbody>
@@ -188,6 +190,7 @@ const VulnTables = () => {
                       ? vuln.quarter.join(", ")
                       : "N/A"}
                   </td>
+                  <td className="max-w-sm truncate">{vuln.pluginOutput}</td>
                 </tr>
               ))}
             </tbody>
